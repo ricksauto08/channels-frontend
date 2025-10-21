@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: channels-dvr
+    env: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8089
