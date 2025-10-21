@@ -2,13 +2,10 @@ services:
   - type: web
     name: channels-dvr
     env: docker
-    plan: starter
-    dockerfilePath: ./Dockerfile
+    plan: free
     autoDeploy: true
     envVars:
-      - key: CHANNELS_DVR_SKIP_AUTH
-        value: "true"
-    disk:
-      name: channels-data
-      mountPath: /channels-dvr/data
-      sizeGB: 1
+      - key: PORT
+        value: 8089
+      - key: CHANNELS_DVR_PORT
+        value: 8089
