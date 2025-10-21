@@ -8,3 +8,7 @@ services:
     envVars:
       - key: PORT
         value: 8089
+    disk:
+      name: channels-data
+      mountPath: /channels-dvr/data
+      sizeGB: 1
