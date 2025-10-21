@@ -1,7 +1,15 @@
-# Use the official Channels DVR image from Fancybits
+# Use the official Channels DVR image
 FROM fancybits/channels-dvr:latest
 
-# Expose the DVR web interface port
+# Expose the port Render provides
 EXPOSE 8089
 
-# Don't override CMD or WORKDIR — use the image's built-in startup script
+# Create an entrypoint script that rewrites the listening port
+RUN echo '#!/bin/sh' > /start.sh && \
+    echo 'export CHANNELS_DVR_PORT=${PORT:-8089}' >> /start.sh && \
+    echo 'echo "Starting Channels DVR on port $CHANNELS_DVR_PORT..."' >> /start.sh && \
+    echo 'exec /app/channels-dvr/run.sh' >> /start.sh && \
+    chmod +x /start.sh
+
+# Use our custom startup script
+CMD ["/start.sh"]
