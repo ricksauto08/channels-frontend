@@ -2,9 +2,10 @@
 FROM fancybits/channels-dvr:latest
 
 # Set working directory
-WORKDIR /channels-dvr
+WORKDIR /app/channels-dvr
 
-# Expose the DVR web interface port
+# Expose DVR web interface port
 EXPOSE 8089
 
-# No CMD needed — the image already knows how to start itself
+# Run the DVR startup script directly
+CMD ["./run.sh"]
