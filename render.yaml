@@ -6,8 +6,15 @@ services:
     dockerfilePath: ./Dockerfile
     autoDeploy: true
     envVars:
+      # Render assigns a random port that your app must listen on
       - key: PORT
         value: 8089
+      # Skip login for demo access
+      - key: CHANNELS_DVR_SKIP_AUTH
+        value: "true"
+      # Tell Channels DVR to bind to whatever port Render assigns
+      - key: CHANNELS_DVR_PORT
+        value: "$PORT"
     disk:
       name: channels-data
       mountPath: /channels-dvr/data
